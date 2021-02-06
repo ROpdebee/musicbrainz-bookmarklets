@@ -47,5 +47,14 @@ function guessUnicodePunctuation() {
 		// difficult to find rules for: em dash (rare), minus (very rare), figure dash (very rare)
 		// TODO: localize quotes using release/lyrics language
 	];
+	const transformationRulesToPreserveMarkup = [
+		[/'''/g, '<b>'], // bold text (temporary change to preserve apostrophe-based markup)
+		[/''/g, '<i>'], // italic text (temporary change)
+		...transformationRules,
+		/* restore apostrophe-based markup (used for annotations and edit notes on MusicBrainz) */
+		[/<b>/g, "'''"],
+		[/<i>/g, "''"],
+	];
 	transformInputValues(titleInputSelectors.join(), transformationRules);
+	transformInputValues('textarea', transformationRulesToPreserveMarkup);
 }

@@ -18,7 +18,7 @@ try {
 		},
 		output: {
 			ascii_only: true,
-			quote_style: 1, // always use single quotes
+			quote_style: 3, // always use original quotes
 		}
 	});
 	if (result.error) {
